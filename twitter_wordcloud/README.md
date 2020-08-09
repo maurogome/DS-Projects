@@ -17,9 +17,14 @@ source venv/Script/activate
 
 ```
 
-e instalar las librerias necesarias con el archivo requirements.txt
+Y también instalar las librerias necesarias con el archivo requirements.txt
 
 ```
 pip install -r requirements.txt
 
 ```
+___
+
+Una vez hecho esto, debes registarte en la [API de Twitter](https://developer.twitter.com/en) donde podras generar las llaves necesarias despues de verificar tu cuenta.
+___
+Si tienes algún comentario o sugerencia me puedes contactar en [@maurogome](https://www.twitter.com/maurogome)

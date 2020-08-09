@@ -56,7 +56,7 @@ def transform(text):
 
 if __name__ == '__main__':
 
-    keyword = input('Enter the account or hashtag you want to analyse...\n\n')
+    keyword = input('Enter the account or hashtag you want to analyse (don\'t forget de @ or # ex. @maurogome or #Python)...\n\n')
     api = api_connection()
     tweets = extract_tweets(keyword, 1000)
     df = pd.DataFrame(data = tweets, columns = ['tweet_text'])

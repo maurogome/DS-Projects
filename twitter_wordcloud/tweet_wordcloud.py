@@ -12,10 +12,10 @@ from wordcloud import WordCloud
 nltk.download('stopwords')
 
 # Aqui debes agregar las llaves de la API de Twitter que generaste:
-consumer_key = ''
-consumer_secret = ''
-access_token_key = ''
-access_token_secret = ''
+consumer_key = 'NHM7F8y0d4ERLsh1FdXKyez3f'
+consumer_secret = 'vd2UsO4mJ7H7oMbufEKhVLQZdj9aB4eOkkwjVG3CoRkOhvxhRU'
+access_token_key = '69721550-yNbG4UDRpt3H5XJJA4qKWtQxP6WQUwOdIDf2T4MMS'
+access_token_secret = '5t2MdIkdz9OnZVDKX4rnL4i2eS9Uz1pZwV8vxRnMHxYL4'
 
 def api_connection():
     auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
@@ -54,25 +54,36 @@ def transform(text):
 
     return (" ".join(no_garbage))
 
-if __name__ == '__main__':
-
-    keyword = input('Enter the account or hashtag you want to analyse (don\'t forget de @ or # ex. @maurogome or #Python)...\n\n')
-    api = api_connection()
-    tweets = extract_tweets(keyword, 1000)
+def create_df(keyword, now):
     df = pd.DataFrame(data = tweets, columns = ['tweet_text'])
-    now = datetime.now().strftime('%Y_%m_%d')
     path = 'tweet_ext/tweets_{}_{datetime}.csv'.format(keyword[1:], datetime = now)
     df.to_csv(path, sep = ',', index = False)
 
-    df['tweets_transform'] = df['tweet_text'].apply(transform)
-    #text = df.tweets_transform
-    text = ' '.join(df.tweets_transform)
-    wordcloud = WordCloud(width = 1024, height = 800, background_color = 'black', min_font_size = 14).generate(text)
-    img_path = 'img/wordcloud_{}_{datetime}.png'.format(keyword[1:], datetime = now)
+    return df
 
+
+def plot_figure(wordcloud, keyword):
+    img_path = 'img/wordcloud_{}_{datetime}.png'.format(keyword[1:], datetime = now)
     plt.figure(figsize = (8, 8), facecolor = 'black')
     plt.imshow(wordcloud)
     plt.axis('off')
     plt.tight_layout(pad = 0)
     plt.savefig(img_path)
     plt.show()
+
+
+if __name__ == '__main__':
+
+    keyword = input('\nEnter the account or hashtag you want to analyse \ndon\'t forget de @ or # ex. @maurogome or #Python...\n\n')
+    api = api_connection()
+    tweets = extract_tweets(keyword, 1000)
+    now = datetime.now().strftime('%Y_%m_%d')
+    df= create_df(keyword, now)
+
+    df['tweets_transform'] = df['tweet_text'].apply(transform)
+    text = ' '.join(df.tweets_transform)
+    wordcloud = WordCloud(width = 1024, height = 800, background_color = 'black', min_font_size = 14).generate(text)
+
+    plot_figure(wordcloud, keyword)
+
+

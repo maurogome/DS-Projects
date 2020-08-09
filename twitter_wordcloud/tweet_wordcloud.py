@@ -11,10 +11,11 @@ from wordcloud import WordCloud
 
 nltk.download('stopwords')
 
-consumer_key = 'NHM7F8y0d4ERLsh1FdXKyez3f'
-consumer_secret = 'vd2UsO4mJ7H7oMbufEKhVLQZdj9aB4eOkkwjVG3CoRkOhvxhRU'
-access_token_key = '69721550-yNbG4UDRpt3H5XJJA4qKWtQxP6WQUwOdIDf2T4MMS'
-access_token_secret = '5t2MdIkdz9OnZVDKX4rnL4i2eS9Uz1pZwV8vxRnMHxYL4'
+# Aqui debes agregar las llaves de la API de Twitter que generaste:
+consumer_key = ''
+consumer_secret = ''
+access_token_key = ''
+access_token_secret = ''
 
 def api_connection():
     auth = tweepy.OAuthHandler(consumer_key, consumer_secret)

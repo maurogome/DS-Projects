@@ -1,4 +1,4 @@
-# Sata Science Mini Projects
+# Data Science Mini Projects
 
 Hola! en este repositorio estaré publicando algunos proyectos de Data Science que pueden ser utiles para practicar y mejorar skills.
 
